@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"reflect"
+	"strconv"
 )
 
 //alias
@@ -17,7 +19,8 @@ var pl = fmt.Println
 	
 //Casting
 func main(){
-	cv1 := 1.5
-	cv2 := int(cv1)
-	pl(cv2)
+	//Convert string
+	cv1 := "5000000000"
+	 cv2 , err := strconv.Atoi(cv1)
+	 pl(cv2, err, reflect.TypeOf(cv2))
 }
