@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 //alias
 var pl = fmt.Println
 
 func main() {
-	pl("Hello world")
+	pl(reflect.TypeOf(42))
 }
 	
