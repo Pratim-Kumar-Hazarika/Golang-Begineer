@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
-	"strconv"
 )
 
 //alias
@@ -29,9 +27,23 @@ func main(){
 	// pl(cv2,reflect.TypeOf(cv2))
 
 	//Convert to float
-	cv1 := "3.14"
-	if cv1 , err := strconv.ParseFloat(cv1, 64);
-	err == nil{
-		pl(cv1, reflect.TypeOf(cv1));
+	// cv1 := "3.14"
+	// if cv1 , err := strconv.ParseFloat(cv1, 64);
+	// err == nil{
+	// 	pl(cv1, reflect.TypeOf(cv1));
+	// }
+
+	//Conditional operators
+
+	iAge :=18
+	if iAge >= 18{
+		pl("You are an adult")
+	}else{
+		pl("You are a minor")
+	}
+
+	/// Little difference
+	if(iAge >=18) && (iAge <65){
+		pl("You are an adult of genz")
 	}
 }
