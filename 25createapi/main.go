@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -33,8 +34,30 @@ func (c Course) IsEmpty() bool {
 }
 
 func main() {
-	fmt.Println("First api")
-
+	fmt.Println("Api - Learn golang online !!")
+	r := mux.NewRouter()
+	//seeding
+	courses = append(courses, Course{
+		CourseId: "2",
+		CourseName: "Reactjs",
+		CoursePrice: 299,
+		Author: &Author{Fullname: "Pratim K Hazarika",Website: "prratim.com"},
+	})
+	courses = append(courses, Course{
+		CourseId: "4",
+		CourseName: "Mern",
+		CoursePrice: 199,
+		Author: &Author{Fullname: "Mark zuck",Website: "go.com"},
+	})
+	///routing
+	r.HandleFunc("/",serveHome).Methods("GET")
+	r.HandleFunc("/courses",getAllCourses).Methods("GET")
+	r.HandleFunc("/course/{id}",getOneCourse).Methods("GET")
+	r.HandleFunc("/course",createOneCourse).Methods("POST")
+	r.HandleFunc("/course/{id}",updateOneCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}",deleteOneCourse).Methods("DELETE")
+	//listen to a port
+	log.Fatal(http.ListenAndServe(":4000",r))
 }
 
 //controllers - file
@@ -89,6 +112,13 @@ func createOneCourse(w http.ResponseWriter, r *http.Request){
 	if course.IsEmpty(){
 		json.NewEncoder(w).Encode("No data inside Json")
 		return
+	}
+	for _,val := range courses {
+		if val.CourseName == course.CourseName {
+			json.NewEncoder(w).Encode("Same course name bro")
+			return;
+	
+		}
 	}
 	///generate unique id,convert to string
 
