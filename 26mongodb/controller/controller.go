@@ -22,7 +22,7 @@ const collectionName ="watchlist"
 var collection *mongo.Collection
 
 ///connect with mongodb
-const connectionString ="mongodb+srv://pratim:zM2tgQMH5KVVgolA@golangcluster.uoaen.mongodb.net/?retryWrites=true&w=majority&appName=golangCluster"
+
 func init(){
 	// mongoURI := os.Getenv("MONGO_URI")
 	// if mongoURI == "" {
