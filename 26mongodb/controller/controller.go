@@ -7,6 +7,7 @@ import (
 	"log"
 	"mymongodb/model"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
@@ -15,7 +16,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-const connectionString ="mongodb+srv://pratim:zM2tgQMH5KVVgolA@golangcluster.uoaen.mongodb.net/?retryWrites=true&w=majority&appName=golangCluster"
 
 const dbName ="netflix"
 const collectionName ="watchlist"
@@ -25,7 +25,11 @@ var collection *mongo.Collection
 ///connect with mongodb
 
 func init(){
-	clientOptions := options.Client().ApplyURI(connectionString)
+	mongoURI := os.Getenv("MONGO_URI")
+	if mongoURI == "" {
+		log.Fatal("MONGO_URI not found in environment variables")
+	}
+	clientOptions := options.Client().ApplyURI(mongoURI)
 	
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil{
