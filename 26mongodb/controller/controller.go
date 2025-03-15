@@ -22,7 +22,7 @@ const collectionName ="watchlist"
 var collection *mongo.Collection
 
 ///connect with mongodb
-
+const connectionString =""
 func init(){
 	// mongoURI := os.Getenv("MONGO_URI")
 	// if mongoURI == "" {
